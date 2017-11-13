@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04E961291FB5538600C2B1B1 /* TextEditor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E961281FB5538600C2B1B1 /* TextEditor.storyboard */; };
+		04E9612B1FB5541600C2B1B1 /* KeyboardToasterScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E9612A1FB5541600C2B1B1 /* KeyboardToasterScrollView.swift */; };
+		04E9612D1FB5568900C2B1B1 /* TextEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E9612C1FB5568900C2B1B1 /* TextEditorViewController.swift */; };
+		04E9612F1FB56ECB00C2B1B1 /* TextEditorLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E9612E1FB56ECB00C2B1B1 /* TextEditorLabel.swift */; };
+		04E961311FB57B9E00C2B1B1 /* TextBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E961301FB57B9E00C2B1B1 /* TextBoardView.swift */; };
 		04EC84161FB53641005C3C12 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC84151FB53641005C3C12 /* AppDelegate.swift */; };
 		04EC84181FB53641005C3C12 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC84171FB53641005C3C12 /* MainViewController.swift */; };
 		04EC841B1FB53641005C3C12 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04EC84191FB53641005C3C12 /* Main.storyboard */; };
@@ -37,6 +42,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04E961281FB5538600C2B1B1 /* TextEditor.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TextEditor.storyboard; sourceTree = "<group>"; };
+		04E9612A1FB5541600C2B1B1 /* KeyboardToasterScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardToasterScrollView.swift; sourceTree = "<group>"; };
+		04E9612C1FB5568900C2B1B1 /* TextEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorViewController.swift; sourceTree = "<group>"; };
+		04E9612E1FB56ECB00C2B1B1 /* TextEditorLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorLabel.swift; sourceTree = "<group>"; };
+		04E961301FB57B9E00C2B1B1 /* TextBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBoardView.swift; sourceTree = "<group>"; };
 		04EC84121FB53641005C3C12 /* Canvas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Canvas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04EC84151FB53641005C3C12 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04EC84171FB53641005C3C12 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				04EC84171FB53641005C3C12 /* MainViewController.swift */,
+				04E9612C1FB5568900C2B1B1 /* TextEditorViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -111,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				04EC84191FB53641005C3C12 /* Main.storyboard */,
+				04E961281FB5538600C2B1B1 /* TextEditor.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -118,6 +130,9 @@
 		043307041FB537A8008E8287 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				04E9612A1FB5541600C2B1B1 /* KeyboardToasterScrollView.swift */,
+				04E961301FB57B9E00C2B1B1 /* TextBoardView.swift */,
+				04E9612E1FB56ECB00C2B1B1 /* TextEditorLabel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -313,6 +328,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04E961291FB5538600C2B1B1 /* TextEditor.storyboard in Resources */,
 				04EC84201FB53641005C3C12 /* LaunchScreen.storyboard in Resources */,
 				04EC841D1FB53641005C3C12 /* Assets.xcassets in Resources */,
 				04EC841B1FB53641005C3C12 /* Main.storyboard in Resources */,
@@ -478,7 +494,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04E9612D1FB5568900C2B1B1 /* TextEditorViewController.swift in Sources */,
+				04E9612B1FB5541600C2B1B1 /* KeyboardToasterScrollView.swift in Sources */,
 				04EC84181FB53641005C3C12 /* MainViewController.swift in Sources */,
+				04E9612F1FB56ECB00C2B1B1 /* TextEditorLabel.swift in Sources */,
+				04E961311FB57B9E00C2B1B1 /* TextBoardView.swift in Sources */,
 				04EC84161FB53641005C3C12 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
