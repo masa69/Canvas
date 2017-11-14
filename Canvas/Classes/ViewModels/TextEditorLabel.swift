@@ -19,8 +19,10 @@ class TextEditorLabel: UILabel {
         }
     }
     
-    private var isOnefinger: Bool = false
-    private var isTwofinger: Bool = false
+    var isMoving: Bool = false
+    
+    private var isOneFinger: Bool = false
+    private var isTwoFinger: Bool = false
     
     private var locations: [CGPoint] = [CGPoint]()
     
@@ -28,7 +30,7 @@ class TextEditorLabel: UILabel {
     private var originY: CGFloat = 0
     
     var index: Int = 0
-    
+
     var touchStart: ((_ label: UILabel) -> Void)?
     
     var touchFinish: (() -> Void)?
@@ -39,7 +41,7 @@ class TextEditorLabel: UILabel {
     }
     
     
-    init(index: Int, parentView: UIView, text: String) {
+    init(index: Int, parentView: UIView, text: String, fontSize: CGFloat) {
         super.init(frame: CGRect(x: 0, y: 0, width: parentView.frame.width, height: parentView.frame.height))
         
         self.index = index
@@ -51,6 +53,8 @@ class TextEditorLabel: UILabel {
         self.isMultipleTouchEnabled = true
         
         self.text = text
+        self.font = UIFont.systemFont(ofSize: self.fontSize)
+//        print(self.font.pointSize)
         self.backgroundColor = UIColor.lightGray
         // label のサイズを テキスト + 余白 に合わせる
         super.sizeToFit()
@@ -94,13 +98,17 @@ class TextEditorLabel: UILabel {
         guard let touche: UITouch = touches.first else {
             return
         }
-        if self.isTwofinger {
+        if self.isTwoFinger {
+            self.isMoving = false
             return
         }
-        if self.isOnefinger {
-            self.isTwofinger = true
+        if self.isOneFinger {
+            print("Two Finger")
+            self.isMoving = false
+            self.isTwoFinger = true
         } else {
-            self.isOnefinger = true
+            print("One Finger")
+            self.isOneFinger = true
             self.touchStart?(self)
         }
         
@@ -121,13 +129,14 @@ class TextEditorLabel: UILabel {
         guard let index: Int = self.nearLocationIndex(location: location) else {
             return
         }
-        if self.isTwofinger {
+        self.isMoving = true
+        if self.isTwoFinger {
             self.locations[index].x = location.x
             self.locations[index].y = location.y
             print("touches.count: \(touches.count)")
             return
         }
-        if self.isOnefinger {
+        if self.isOneFinger {
             self.frame.origin.x = self.originX + location.x - self.locations[index].x
             self.frame.origin.y = self.originY + location.y - self.locations[index].y
             self.locations[index].x = location.x
@@ -154,13 +163,14 @@ class TextEditorLabel: UILabel {
         self.originX = self.frame.origin.x
         self.originY = self.frame.origin.y
         self.locations.remove(at: index)
-        if self.isTwofinger {
-            self.isTwofinger = false
+        if self.isTwoFinger {
+            self.isTwoFinger = false
             print("touchesEnded two: \(self.locations.count)")
             return
         }
-        if self.isOnefinger {
-            self.isOnefinger = false
+        if self.isOneFinger {
+            self.isMoving = false
+            self.isOneFinger = false
             self.touchFinish?()
             return
         }

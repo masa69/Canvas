@@ -5,11 +5,11 @@ class TextBoardView: UIView {
     
     private var texts: [TextEditorLabel] = [TextEditorLabel]()
     
-    var indexCounter: Int = 0
+    private var indexCounter: Int = 0
     
-    var selectedText: TextEditorLabel?
+    private var selectedText: TextEditorLabel?
     
-    var didSelectBackground: (() -> Void)?
+    var didSelectBackground: ((_ label: TextEditorLabel?) -> Void)?
     
     
     override init(frame: CGRect) {
@@ -31,8 +31,8 @@ class TextBoardView: UIView {
     }
     
     
-    func append(text: String) {
-        let label: TextEditorLabel = TextEditorLabel(index: self.indexCounter, parentView: self, text: text)
+    func append(text: String, fontSize: CGFloat) {
+        let label: TextEditorLabel = TextEditorLabel(index: self.indexCounter, parentView: self, text: text, fontSize: fontSize)
         label.touchStart = { (label: UILabel) in
             self.selectedText = label as? TextEditorLabel
             print("start")
@@ -51,7 +51,7 @@ class TextBoardView: UIView {
             label.handleTouchesBegan(touches: touches)
             return
         }
-        self.didSelectBackground?()
+        self.didSelectBackground?(nil)
     }
     
     
@@ -65,6 +65,9 @@ class TextBoardView: UIView {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let label: TextEditorLabel = self.selectedText {
+            if !label.isMoving {
+                self.didSelectBackground?(label)
+            }
             label.handleTouchesEnded(touches: touches)
             return
         }
