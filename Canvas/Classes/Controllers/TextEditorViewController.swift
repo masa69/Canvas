@@ -20,7 +20,7 @@ class TextEditorViewController: UIViewController {
     
     var fontSize: CGFloat = 30 {
         didSet {
-            bodyTextView.font = UIFont.systemFont(ofSize: self.fontSize)
+            bodyTextView.font = UIFont.systemFont(ofSize: self.fontSize, weight: .semibold)
             fontSizeSlider.value = Float(self.fontSize)
         }
     }
@@ -42,7 +42,7 @@ class TextEditorViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.fontSize = 30
+        self.prepareTextView()
     }
     
     
@@ -85,6 +85,16 @@ class TextEditorViewController: UIViewController {
     
     private func removeObservers() {
         keyboardToasterView.removeObservers()
+    }
+    
+    
+    private func prepareTextView() {
+        guard let label: TextEditorLabel = self.label else {
+            self.fontSize = 30
+            return
+        }
+        self.fontSize = label.fontSize
+        bodyTextView.text = label.text
     }
     
     

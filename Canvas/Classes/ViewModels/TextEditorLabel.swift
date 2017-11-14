@@ -30,10 +30,18 @@ class TextEditorLabel: UILabel {
     private var originY: CGFloat = 0
     
     var index: Int = 0
-
-    var touchStart: ((_ label: UILabel) -> Void)?
     
-    var touchFinish: (() -> Void)?
+    var fontSize: CGFloat {
+        get {
+            return self.font.pointSize
+        }
+    }
+    
+    var touchStart: ((_ label: TextEditorLabel) -> Void)?
+    
+    var touchFinish: ((_ index: Int, _ location: CGPoint) -> Void)?
+    
+    var didSelect: ((_ label: TextEditorLabel) -> Void)?
     
     
     required init?(coder aDecoder: NSCoder) {
@@ -53,15 +61,15 @@ class TextEditorLabel: UILabel {
         self.isMultipleTouchEnabled = true
         
         self.text = text
-        self.font = UIFont.systemFont(ofSize: self.fontSize)
-//        print(self.font.pointSize)
+        self.font = UIFont.systemFont(ofSize: fontSize, weight: .semibold)
+        self.textAlignment = .center
         self.backgroundColor = UIColor.lightGray
         // label のサイズを テキスト + 余白 に合わせる
         super.sizeToFit()
         let width: CGFloat = self.frame.width + self.paddingV
         let height: CGFloat = self.frame.height + self.paddingH
-        let x: CGFloat = (parentView.frame.width - width) / 2 - (self.paddingV / 2)
-        let y: CGFloat = (parentView.frame.height - height) / 2 - (self.paddingH / 2)
+        let x: CGFloat = (parentView.frame.width - width) / 2
+        let y: CGFloat = (parentView.frame.height - height) / 2
         self.frame = CGRect(x: x, y: y, width: width, height: height)
         self.parentView?.addSubview(self)
     }
@@ -71,6 +79,20 @@ class TextEditorLabel: UILabel {
     override func drawText(in rect: CGRect) {
         let newRect: CGRect = UIEdgeInsetsInsetRect(rect, self.insets)
         super.drawText(in: newRect)
+    }
+    
+    
+    func update(text: String, fontSize: CGFloat) {
+        guard let view: UIView = self.parentView else {
+            return
+        }
+        self.text = text
+        self.font = UIFont.systemFont(ofSize: fontSize, weight: .semibold)
+        self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: view.frame.width, height: view.frame.height)
+        super.sizeToFit()
+        let width: CGFloat = self.frame.width + self.paddingV
+        let height: CGFloat = self.frame.height + self.paddingH
+        self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: width, height: height)
     }
     
     
@@ -171,7 +193,7 @@ class TextEditorLabel: UILabel {
         if self.isOneFinger {
             self.isMoving = false
             self.isOneFinger = false
-            self.touchFinish?()
+            self.touchFinish?(self.index, location)
             return
         }
     }
@@ -195,6 +217,9 @@ class TextEditorLabel: UILabel {
     
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if !self.isMoving {
+            self.didSelect?(self)
+        }
         self.handleTouchesEnded(touches: touches)
     }
     

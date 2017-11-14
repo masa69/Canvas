@@ -20,7 +20,31 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qZB-st-vYM" customClass="TextBoardView" customModule="Canvas" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Ha-PH-pMH">
+                                        <rect key="frame" x="135" y="486" width="50" height="50"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="削除" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXz-oi-s9R">
+                                                <rect key="frame" x="7.5" y="15" width="35" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="O0G-tk-Zjv"/>
+                                            <constraint firstAttribute="width" constant="50" id="j90-Tc-I8Y"/>
+                                            <constraint firstItem="NXz-oi-s9R" firstAttribute="centerY" secondItem="9Ha-PH-pMH" secondAttribute="centerY" id="rVn-qi-VB4"/>
+                                            <constraint firstItem="NXz-oi-s9R" firstAttribute="centerX" secondItem="9Ha-PH-pMH" secondAttribute="centerX" id="xH0-J2-fSA"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="0.8771524235" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="9Ha-PH-pMH" firstAttribute="centerX" secondItem="qZB-st-vYM" secondAttribute="centerX" id="Ksp-ss-53A"/>
+                                    <constraint firstAttribute="bottom" secondItem="9Ha-PH-pMH" secondAttribute="bottom" constant="12" id="b5i-mw-FKh"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -33,6 +57,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="deleteView" destination="9Ha-PH-pMH" id="sNT-Zp-cK6"/>
+                        <outlet property="deleteViewBottomConstraint" destination="b5i-mw-FKh" id="xzM-5D-0W7"/>
                         <outlet property="textBoardView" destination="qZB-st-vYM" id="t1j-c8-7Qw"/>
                     </connections>
                 </viewController>
