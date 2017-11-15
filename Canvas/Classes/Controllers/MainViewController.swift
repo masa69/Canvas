@@ -93,15 +93,15 @@ class MainViewController: UIViewController {
         let storyboard: UIStoryboard = UIStoryboard(name: "TextEditor", bundle: nil)
         let vc: TextEditorViewController = storyboard.instantiateInitialViewController() as! TextEditorViewController
         vc.label = label
-        vc.didFinish = { (text: String, fontSize: CGFloat) in
+        vc.didFinish = { (text: String, fontSize: CGFloat, color: Canvas.Color, align: Canvas.Align, textDecoration: Canvas.TextDecoration) in
             if label == nil {
                 if text != "" {
-                    self.textBoardView.append(text: text, fontSize: fontSize)
+                    self.textBoardView.append(text: text, fontSize: fontSize, color: color, align: align, textDecoration: textDecoration)
                 }
                 return
             }
             if let l: TextEditorLabel = label {
-                self.textBoardView.update(index: l.index, text: text, fontSize: fontSize)
+                self.textBoardView.update(index: l.index, text: text, fontSize: fontSize, color: color, align: align, textDecoration: textDecoration)
             }
         }
         self.present(vc, animated: false, completion: nil)

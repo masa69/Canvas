@@ -22,29 +22,48 @@
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4c3-ON-6MB" customClass="TransparentView" customModule="Canvas" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="498" width="320" height="50"/>
+                                        <rect key="frame" x="0.0" y="448" width="320" height="100"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MCq-ib-jD9">
-                                                <rect key="frame" x="242" y="1" width="66" height="48"/>
+                                                <rect key="frame" x="242" y="52" width="66" height="48"/>
                                                 <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="30"/>
                                                 <state key="normal" title="Done"/>
                                             </button>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="AXs-hy-8Pm">
-                                                <rect key="frame" x="30" y="9.5" width="182" height="31"/>
+                                                <rect key="frame" x="30" y="60" width="182" height="31"/>
                                             </slider>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qdd-zG-0kC" customClass="TransparentView" customModule="Canvas" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uVq-Ha-HbD" customClass="AlignChangerButton" customModule="Canvas" customModuleProvider="target">
+                                                        <rect key="frame" x="278" y="4.5" width="30" height="41"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="24"/>
+                                                        <state key="normal" title="●"/>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.97092899659999998" green="1" blue="0.9452434099" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="uVq-Ha-HbD" secondAttribute="trailing" constant="12" id="5a1-NK-PNJ"/>
+                                                    <constraint firstItem="uVq-Ha-HbD" firstAttribute="centerY" secondItem="qdd-zG-0kC" secondAttribute="centerY" id="9bQ-A0-srJ"/>
+                                                    <constraint firstAttribute="height" constant="50" id="rca-xG-3Ox"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="1" blue="0.8771524235" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="AXs-hy-8Pm" firstAttribute="leading" secondItem="4c3-ON-6MB" secondAttribute="leading" constant="32" id="Cle-Dq-KQg"/>
-                                            <constraint firstAttribute="height" constant="50" id="IVH-rm-lB9"/>
+                                            <constraint firstAttribute="height" constant="100" id="IVH-rm-lB9"/>
+                                            <constraint firstAttribute="bottom" secondItem="MCq-ib-jD9" secondAttribute="bottom" id="Lzf-7F-tmZ"/>
+                                            <constraint firstAttribute="bottom" secondItem="AXs-hy-8Pm" secondAttribute="bottom" constant="10" id="NF9-ao-exX"/>
                                             <constraint firstItem="MCq-ib-jD9" firstAttribute="leading" secondItem="AXs-hy-8Pm" secondAttribute="trailing" constant="32" id="TCe-A7-Dt7"/>
-                                            <constraint firstItem="MCq-ib-jD9" firstAttribute="centerY" secondItem="4c3-ON-6MB" secondAttribute="centerY" id="eaJ-DF-EAE"/>
-                                            <constraint firstItem="AXs-hy-8Pm" firstAttribute="centerY" secondItem="4c3-ON-6MB" secondAttribute="centerY" id="enN-dD-7Yu"/>
+                                            <constraint firstItem="qdd-zG-0kC" firstAttribute="top" secondItem="4c3-ON-6MB" secondAttribute="top" id="TKE-8Y-Ug5"/>
+                                            <constraint firstAttribute="trailing" secondItem="qdd-zG-0kC" secondAttribute="trailing" id="gpp-56-cZJ"/>
                                             <constraint firstAttribute="trailing" secondItem="MCq-ib-jD9" secondAttribute="trailing" constant="12" id="iAw-Vl-7ki"/>
+                                            <constraint firstItem="qdd-zG-0kC" firstAttribute="leading" secondItem="4c3-ON-6MB" secondAttribute="leading" id="kY5-Ik-srT"/>
                                         </constraints>
                                     </view>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="GUG-wc-YTE">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="498"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GUG-wc-YTE">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="448"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -73,6 +92,7 @@
                         <viewLayoutGuide key="safeArea" id="bPb-AI-Nri"/>
                     </view>
                     <connections>
+                        <outlet property="alignChangerButton" destination="uVq-Ha-HbD" id="qYe-Ua-HQn"/>
                         <outlet property="bodyTextView" destination="GUG-wc-YTE" id="dgb-3u-OwS"/>
                         <outlet property="doneButton" destination="MCq-ib-jD9" id="QvX-jZ-FXi"/>
                         <outlet property="fontSizeSlider" destination="AXs-hy-8Pm" id="UwH-Xl-MZX"/>

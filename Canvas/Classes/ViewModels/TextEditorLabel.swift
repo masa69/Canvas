@@ -37,6 +37,23 @@ class TextEditorLabel: UILabel {
         }
     }
     
+    var align: Canvas.Align = .center {
+        didSet {
+            switch self.align {
+            case .left:
+                self.textAlignment = .left
+            case .center:
+                self.textAlignment = .center
+            case .right:
+                self.textAlignment = .right
+            }
+        }
+    }
+    
+    var color: Canvas.Color = .black
+    
+    var textDecoration: Canvas.TextDecoration = .none
+    
     var touchStart: ((_ label: TextEditorLabel) -> Void)?
     
     var touchFinish: ((_ index: Int, _ location: CGPoint) -> Void)?
@@ -49,7 +66,7 @@ class TextEditorLabel: UILabel {
     }
     
     
-    init(index: Int, parentView: UIView, text: String, fontSize: CGFloat) {
+    init(index: Int, parentView: UIView, text: String, fontSize: CGFloat, color: Canvas.Color, align: Canvas.Align, textDecoration: Canvas.TextDecoration) {
         super.init(frame: CGRect(x: 0, y: 0, width: parentView.frame.width, height: parentView.frame.height))
         
         self.index = index
@@ -62,7 +79,19 @@ class TextEditorLabel: UILabel {
         
         self.text = text
         self.font = UIFont.systemFont(ofSize: fontSize, weight: .semibold)
-        self.textAlignment = .center
+        self.color = color
+        self.align = align
+        self.textDecoration = textDecoration
+        
+        switch self.align {
+        case .left:
+            self.textAlignment = .left
+        case .center:
+            self.textAlignment = .center
+        case .right:
+            self.textAlignment = .right
+        }
+        
         self.backgroundColor = UIColor.lightGray
         // label のサイズを テキスト + 余白 に合わせる
         super.sizeToFit()
@@ -82,12 +111,15 @@ class TextEditorLabel: UILabel {
     }
     
     
-    func update(text: String, fontSize: CGFloat) {
+    func update(text: String, fontSize: CGFloat, color: Canvas.Color, align: Canvas.Align, textDecoration: Canvas.TextDecoration) {
         guard let view: UIView = self.parentView else {
             return
         }
         self.text = text
         self.font = UIFont.systemFont(ofSize: fontSize, weight: .semibold)
+        self.color = color
+        self.align = align
+        self.textDecoration = textDecoration
         self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: view.frame.width, height: view.frame.height)
         super.sizeToFit()
         let width: CGFloat = self.frame.width + self.paddingV

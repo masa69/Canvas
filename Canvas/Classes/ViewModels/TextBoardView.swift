@@ -35,8 +35,16 @@ class TextBoardView: UIView {
     }
     
     
-    func append(text: String, fontSize: CGFloat) {
-        let label: TextEditorLabel = TextEditorLabel(index: self.indexCounter, parentView: self, text: text, fontSize: fontSize)
+    func append(text: String, fontSize: CGFloat, color: Canvas.Color, align: Canvas.Align, textDecoration: Canvas.TextDecoration) {
+        let label: TextEditorLabel = TextEditorLabel(
+            index: self.indexCounter,
+            parentView: self,
+            text: text,
+            fontSize: fontSize,
+            color: color,
+            align: align,
+            textDecoration: textDecoration
+        )
         label.touchStart = { (label: TextEditorLabel) in
             self.selectedLabel = label
             self.touchStart?()
@@ -53,10 +61,10 @@ class TextBoardView: UIView {
     }
     
     
-    func update(index: Int, text: String, fontSize: CGFloat) {
+    func update(index: Int, text: String, fontSize: CGFloat, color: Canvas.Color, align: Canvas.Align, textDecoration: Canvas.TextDecoration) {
         for label in self.texts {
             if label.index == index {
-                label.update(text: text, fontSize: fontSize)
+                label.update(text: text, fontSize: fontSize, color: color, align: align, textDecoration: textDecoration)
                 return
             }
         }
