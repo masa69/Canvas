@@ -6,13 +6,15 @@ class MainViewController: UIViewController {
     @IBOutlet weak var textBoardView: TextBoardView!
     
     @IBOutlet weak var deleteView: UIView!
-    
     @IBOutlet weak var deleteViewBottomConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var nextButtonBottomConstraint: NSLayoutConstraint!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        deleteViewBottomConstraint.constant = deleteView.frame.height * -1
+        self.iniMenu()
         self.initTextBoardView()
     }
     
@@ -34,10 +36,18 @@ class MainViewController: UIViewController {
     }
     
     
+    private func iniMenu() {
+        nextButtonBottomConstraint.constant = 12
+        deleteViewBottomConstraint.constant = deleteView.frame.height * -1
+        nextButton.addTarget(self, action: #selector(self.onNextButton(_:)), for: .touchDown)
+    }
+    
+    
     private func initTextBoardView() {
         textBoardView.touchStart = {
             print("start")
-            self.animateDeleteView(constant: 12)
+            self.animateMenu(constraint: self.nextButtonBottomConstraint, constant: self.nextButton.frame.height * -1)
+            self.animateMenu(constraint: self.deleteViewBottomConstraint, constant: 12)
         }
         textBoardView.touchFinish = { (index: Int, location: CGPoint) in
             if self.needRemove(location: location) {
@@ -45,7 +55,8 @@ class MainViewController: UIViewController {
                 self.textBoardView.remove(index: index)
             }
             print("finish")
-            self.animateDeleteView(constant: self.deleteView.frame.height * -1)
+            self.animateMenu(constraint: self.nextButtonBottomConstraint, constant: 12)
+            self.animateMenu(constraint: self.deleteViewBottomConstraint, constant: self.deleteView.frame.height * -1)
         }
         textBoardView.didSelect = { (label: TextEditorLabel?) in
             self.gotoTextEditor(label: label)
@@ -53,9 +64,9 @@ class MainViewController: UIViewController {
     }
     
     
-    private func animateDeleteView(constant: CGFloat) {
+    private func animateMenu(constraint: NSLayoutConstraint, constant: CGFloat) {
         let animate: UIViewPropertyAnimator = UIViewPropertyAnimator(duration: 0.1, curve: .easeIn) {
-            self.deleteViewBottomConstraint.constant = constant
+            constraint.constant = constant
             self.view.layoutIfNeeded()
         }
         animate.startAnimation()
@@ -65,8 +76,10 @@ class MainViewController: UIViewController {
     private func needRemove(location: CGPoint) -> Bool {
         let minX: CGFloat = deleteView.frame.origin.x
         let maxX: CGFloat = deleteView.frame.origin.x + deleteView.frame.width
-        let minY: CGFloat = deleteView.frame.origin.y
+        let minY: CGFloat = deleteView.frame.origin.y - 40
         let maxY: CGFloat = deleteView.frame.origin.y + deleteView.frame.height
+//        print(location.x, location.y)
+//        print(minX, maxX, minY, maxY)
         if minX <= location.x && location.x <= maxX {
             if minY <= location.y && location.y <= maxY {
                 return true
@@ -92,6 +105,21 @@ class MainViewController: UIViewController {
             }
         }
         self.present(vc, animated: false, completion: nil)
+    }
+    
+    
+    private func gotoPreview() {
+        let storyboard: UIStoryboard = UIStoryboard(name: "Preview", bundle: nil)
+        let vc: PreviewViewController = storyboard.instantiateInitialViewController() as! PreviewViewController
+        vc.image = textBoardView.toImage()
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    
+    // MARK: - Target Button
+    
+    @objc func onNextButton(_ sender: UIButton) {
+        self.gotoPreview()
     }
     
 }
