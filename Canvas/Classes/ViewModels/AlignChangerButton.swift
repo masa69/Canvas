@@ -30,11 +30,11 @@ class AlignChangerButton: UIButton {
     func change(callback: (_ align: Canvas.Align) -> Void) {
         switch self.align {
         case .left:
-            self.align = .center
-        case .center:
             self.align = .right
-        case .right:
+        case .center:
             self.align = .left
+        case .right:
+            self.align = .center
         }
         callback(self.align)
     }

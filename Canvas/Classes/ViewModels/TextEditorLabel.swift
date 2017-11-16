@@ -39,20 +39,21 @@ class TextEditorLabel: UILabel {
     
     var align: Canvas.Align = .center {
         didSet {
-            switch self.align {
-            case .left:
-                self.textAlignment = .left
-            case .center:
-                self.textAlignment = .center
-            case .right:
-                self.textAlignment = .right
-            }
+            self.updateAlign()
         }
     }
     
-    var color: Canvas.Color = .black
+    var color: Canvas.Color = .black {
+        didSet {
+            self.updateTextStyle()
+        }
+    }
     
-    var textDecoration: Canvas.TextDecoration = .none
+    var textDecoration: Canvas.TextDecoration = .none {
+        didSet {
+            self.updateTextStyle()
+        }
+    }
     
     var touchStart: ((_ label: TextEditorLabel) -> Void)?
     
@@ -83,16 +84,12 @@ class TextEditorLabel: UILabel {
         self.align = align
         self.textDecoration = textDecoration
         
-        switch self.align {
-        case .left:
-            self.textAlignment = .left
-        case .center:
-            self.textAlignment = .center
-        case .right:
-            self.textAlignment = .right
-        }
+        self.updateTextStyle()
+        self.updateAlign()
         
-        self.backgroundColor = UIColor.lightGray
+        self.layer.masksToBounds = true
+        self.layer.cornerRadius = 10
+        
         // label のサイズを テキスト + 余白 に合わせる
         super.sizeToFit()
         let width: CGFloat = self.frame.width + self.paddingV
@@ -108,6 +105,30 @@ class TextEditorLabel: UILabel {
     override func drawText(in rect: CGRect) {
         let newRect: CGRect = UIEdgeInsetsInsetRect(rect, self.insets)
         super.drawText(in: newRect)
+    }
+    
+    
+    private func updateTextStyle() {
+        switch self.textDecoration {
+        case .none:
+            self.backgroundColor = UIColor.clear
+            self.textColor = UIColor.rgb(rgbValue: self.color.rawValue, alpha: 1.0)
+        case .clearBorder:
+            self.backgroundColor = UIColor.rgb(rgbValue: self.color.rawValue, alpha: 0.5)
+            self.textColor = UIColor.white
+        }
+    }
+    
+    
+    private func updateAlign() {
+        switch self.align {
+        case .left:
+            self.textAlignment = .left
+        case .center:
+            self.textAlignment = .center
+        case .right:
+            self.textAlignment = .right
+        }
     }
     
     

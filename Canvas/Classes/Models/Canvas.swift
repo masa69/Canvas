@@ -5,6 +5,7 @@ class Canvas {
     
     enum Color: UInt {
         case black = 0x000000
+        case red = 0xff0000
     }
     
     enum TextDecoration {

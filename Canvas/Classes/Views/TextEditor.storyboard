@@ -40,12 +40,33 @@
                                                         <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="24"/>
                                                         <state key="normal" title="●"/>
                                                     </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xfy-xc-iY3" customClass="TextDecorationButton" customModule="Canvas" customModuleProvider="target">
+                                                        <rect key="frame" x="12" y="4.5" width="30" height="41"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                                        <state key="normal" title="A"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E4i-Pd-hbS" customClass="BlackButton" customModule="Canvas" customModuleProvider="target">
+                                                        <rect key="frame" x="66" y="4.5" width="30" height="41"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="24"/>
+                                                        <state key="normal" title="黒"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XhM-Qb-niX" customClass="RedButton" customModule="Canvas" customModuleProvider="target">
+                                                        <rect key="frame" x="108" y="4.5" width="30" height="41"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="24"/>
+                                                        <state key="normal" title="赤"/>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.97092899659999998" green="1" blue="0.9452434099" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="uVq-Ha-HbD" secondAttribute="trailing" constant="12" id="5a1-NK-PNJ"/>
+                                                    <constraint firstItem="E4i-Pd-hbS" firstAttribute="leading" secondItem="xfy-xc-iY3" secondAttribute="trailing" constant="24" id="7TB-5k-fGv"/>
                                                     <constraint firstItem="uVq-Ha-HbD" firstAttribute="centerY" secondItem="qdd-zG-0kC" secondAttribute="centerY" id="9bQ-A0-srJ"/>
+                                                    <constraint firstItem="E4i-Pd-hbS" firstAttribute="centerY" secondItem="qdd-zG-0kC" secondAttribute="centerY" id="JXz-zt-uKm"/>
+                                                    <constraint firstItem="xfy-xc-iY3" firstAttribute="centerY" secondItem="qdd-zG-0kC" secondAttribute="centerY" id="V9h-nj-DSG"/>
+                                                    <constraint firstItem="XhM-Qb-niX" firstAttribute="leading" secondItem="E4i-Pd-hbS" secondAttribute="trailing" constant="12" id="dfd-eF-E4l"/>
                                                     <constraint firstAttribute="height" constant="50" id="rca-xG-3Ox"/>
+                                                    <constraint firstItem="xfy-xc-iY3" firstAttribute="leading" secondItem="qdd-zG-0kC" secondAttribute="leading" constant="12" id="vUY-KN-gjz"/>
+                                                    <constraint firstItem="XhM-Qb-niX" firstAttribute="centerY" secondItem="qdd-zG-0kC" secondAttribute="centerY" id="y0r-LV-TXU"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -93,11 +114,14 @@
                     </view>
                     <connections>
                         <outlet property="alignChangerButton" destination="uVq-Ha-HbD" id="qYe-Ua-HQn"/>
+                        <outlet property="blackButton" destination="E4i-Pd-hbS" id="Sik-lY-SC9"/>
                         <outlet property="bodyTextView" destination="GUG-wc-YTE" id="dgb-3u-OwS"/>
                         <outlet property="doneButton" destination="MCq-ib-jD9" id="QvX-jZ-FXi"/>
                         <outlet property="fontSizeSlider" destination="AXs-hy-8Pm" id="UwH-Xl-MZX"/>
                         <outlet property="keyboardToasterView" destination="h8s-XH-Kvh" id="RCW-AM-9WS"/>
                         <outlet property="keyboardToasterViewBottomConstraint" destination="zKs-w9-XxQ" id="Ddx-X5-Teu"/>
+                        <outlet property="redButton" destination="XhM-Qb-niX" id="EVf-4d-ICe"/>
+                        <outlet property="textDecorationButton" destination="xfy-xc-iY3" id="b7r-SL-O1B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DOR-FT-Xux" userLabel="First Responder" sceneMemberID="firstResponder"/>

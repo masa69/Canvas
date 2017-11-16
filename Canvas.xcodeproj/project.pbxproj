@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0440C5FC1FBD3BC500C29709 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440C5FB1FBD3BC500C29709 /* UIColorExtension.swift */; };
+		0440C5FE1FBD47DA00C29709 /* TextDecorationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440C5FD1FBD47DA00C29709 /* TextDecorationButton.swift */; };
+		0440C6001FBD47E600C29709 /* BlackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440C5FF1FBD47E600C29709 /* BlackButton.swift */; };
+		0440C6021FBD47EF00C29709 /* RedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440C6011FBD47EF00C29709 /* RedButton.swift */; };
 		04E961291FB5538600C2B1B1 /* TextEditor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E961281FB5538600C2B1B1 /* TextEditor.storyboard */; };
 		04E9612B1FB5541600C2B1B1 /* KeyboardToasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E9612A1FB5541600C2B1B1 /* KeyboardToasterView.swift */; };
 		04E9612D1FB5568900C2B1B1 /* TextEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E9612C1FB5568900C2B1B1 /* TextEditorViewController.swift */; };
@@ -48,6 +52,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0440C5FB1FBD3BC500C29709 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		0440C5FD1FBD47DA00C29709 /* TextDecorationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDecorationButton.swift; sourceTree = "<group>"; };
+		0440C5FF1FBD47E600C29709 /* BlackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackButton.swift; sourceTree = "<group>"; };
+		0440C6011FBD47EF00C29709 /* RedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedButton.swift; sourceTree = "<group>"; };
 		04E961281FB5538600C2B1B1 /* TextEditor.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TextEditor.storyboard; sourceTree = "<group>"; };
 		04E9612A1FB5541600C2B1B1 /* KeyboardToasterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardToasterView.swift; sourceTree = "<group>"; };
 		04E9612C1FB5568900C2B1B1 /* TextEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorViewController.swift; sourceTree = "<group>"; };
@@ -146,8 +154,11 @@
 			isa = PBXGroup;
 			children = (
 				04E9613C1FBBEA0E00C2B1B1 /* AlignChangerButton.swift */,
+				0440C5FF1FBD47E600C29709 /* BlackButton.swift */,
 				04E9612A1FB5541600C2B1B1 /* KeyboardToasterView.swift */,
+				0440C6011FBD47EF00C29709 /* RedButton.swift */,
 				04E961301FB57B9E00C2B1B1 /* TextBoardView.swift */,
+				0440C5FD1FBD47DA00C29709 /* TextDecorationButton.swift */,
 				04E9612E1FB56ECB00C2B1B1 /* TextEditorLabel.swift */,
 				04E961321FBA7E9300C2B1B1 /* TransparentView.swift */,
 			);
@@ -167,6 +178,7 @@
 		04E961351FBBC01200C2B1B1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				0440C5FB1FBD3BC500C29709 /* UIColorExtension.swift */,
 				04E961361FBBC05800C2B1B1 /* UIViewExtension.swift */,
 			);
 			path = Extensions;
@@ -537,9 +549,13 @@
 				04E9613D1FBBEA0E00C2B1B1 /* AlignChangerButton.swift in Sources */,
 				04E9612F1FB56ECB00C2B1B1 /* TextEditorLabel.swift in Sources */,
 				04E961311FB57B9E00C2B1B1 /* TextBoardView.swift in Sources */,
+				0440C6021FBD47EF00C29709 /* RedButton.swift in Sources */,
 				04E961371FBBC05900C2B1B1 /* UIViewExtension.swift in Sources */,
+				0440C5FE1FBD47DA00C29709 /* TextDecorationButton.swift in Sources */,
 				04EC84161FB53641005C3C12 /* AppDelegate.swift in Sources */,
 				04E961391FBBC21B00C2B1B1 /* PreviewViewController.swift in Sources */,
+				0440C5FC1FBD3BC500C29709 /* UIColorExtension.swift in Sources */,
+				0440C6001FBD47E600C29709 /* BlackButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

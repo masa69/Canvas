@@ -13,6 +13,12 @@ class TextEditorViewController: UIViewController {
     
     @IBOutlet weak var fontSizeSlider: UISlider!
     
+    @IBOutlet weak var textDecorationButton: TextDecorationButton!
+    
+    @IBOutlet weak var blackButton: BlackButton!
+    
+    @IBOutlet weak var redButton: RedButton!
+    
     @IBOutlet weak var alignChangerButton: AlignChangerButton!
     
     
@@ -33,9 +39,32 @@ class TextEditorViewController: UIViewController {
         }
     }
     
-    var color: Canvas.Color = .black
+    var color: Canvas.Color = .black {
+        didSet {
+            switch self.textDecoration {
+            case .none:
+                bodyTextView.textColor = UIColor.rgb(rgbValue: self.color.rawValue, alpha: 1.0)
+                bodyTextView.backgroundColor = UIColor.clear
+            case .clearBorder:
+                bodyTextView.textColor = UIColor.white
+                bodyTextView.backgroundColor = UIColor.rgb(rgbValue: self.color.rawValue, alpha: 0.5)
+            }
+        }
+    }
     
-    var textDecoration: Canvas.TextDecoration = .none
+    var textDecoration: Canvas.TextDecoration = .none {
+        didSet {
+            textDecorationButton.style = self.textDecoration
+            switch self.textDecoration {
+            case .none:
+                bodyTextView.textColor = UIColor.rgb(rgbValue: self.color.rawValue, alpha: 1.0)
+                bodyTextView.backgroundColor = UIColor.clear
+            case .clearBorder:
+                bodyTextView.textColor = UIColor.white
+                bodyTextView.backgroundColor = UIColor.rgb(rgbValue: self.color.rawValue, alpha: 0.5)
+            }
+        }
+    }
     
     var didFinish: ((_ text: String, _ fontSize: CGFloat, _ color: Canvas.Color, _ align: Canvas.Align, _ textDecoration: Canvas.TextDecoration) -> Void)?
     
@@ -89,8 +118,11 @@ class TextEditorViewController: UIViewController {
     
     
     private func initButton() {
-        doneButton.addTarget(self, action: #selector(self.onDoneButton(_:)), for: .touchDown)
+        textDecorationButton.addTarget(self, action: #selector(self.onTextDeorationButton(_:)), for: .touchDown)
+        blackButton.addTarget(self, action: #selector(self.onBlackButton(_:)), for: .touchDown)
+        redButton.addTarget(self, action: #selector(self.onRedButton(_:)), for: .touchDown)
         alignChangerButton.addTarget(self, action: #selector(self.onAlignChangerButton(_:)), for: .touchDown)
+        doneButton.addTarget(self, action: #selector(self.onDoneButton(_:)), for: .touchDown)
     }
     
     
@@ -135,18 +167,38 @@ class TextEditorViewController: UIViewController {
     
     // MARK: - Target Button
     
-    @objc func onDoneButton(_ sender: UIButton) {
-        self.dismiss(animated: false) {
-            if self.bodyTextView.text != "" {
-                self.didFinish?(self.bodyTextView.text, self.fontSize, self.color , self.align, self.textDecoration)
-            }
+    @objc func onAlignChangerButton(_ sender: UIButton) {
+        alignChangerButton.change { (align: Canvas.Align) in
+            self.align = align
         }
     }
     
     
-    @objc func onAlignChangerButton(_ sender: UIButton) {
-        alignChangerButton.change { (align: Canvas.Align) in
-            self.align = align
+    @objc func onTextDeorationButton(_ sender: UIButton) {
+        switch self.textDecoration {
+        case .clearBorder:
+            self.textDecoration = .none
+        case .none:
+            self.textDecoration = .clearBorder
+        }
+    }
+    
+    
+    @objc func onBlackButton(_ sender: UIButton) {
+        self.color = .black
+    }
+    
+    
+    @objc func onRedButton(_ sender: UIButton) {
+        self.color = .red
+    }
+    
+    
+    @objc func onDoneButton(_ sender: UIButton) {
+        self.dismiss(animated: false) {
+            if self.bodyTextView.text != "" {
+                self.didFinish?(self.bodyTextView.text, self.fontSize, self.color, self.align, self.textDecoration)
+            }
         }
     }
     
