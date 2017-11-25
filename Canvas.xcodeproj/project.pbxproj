@@ -729,9 +729,9 @@
 				INFOPLIST_FILE = Canvas/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = net.masa69.Canvas;
+				PRODUCT_BUNDLE_IDENTIFIER = com.psychedelicnekopunch.Canvas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a229ca69-0030-49b3-8a03-76b92f5c9f1f";
+				PROVISIONING_PROFILE = "768aaec3-c192-4a7b-8af6-2c2587d2dded";
 				PROVISIONING_PROFILE_SPECIFIER = Canvas;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -748,7 +748,7 @@
 				INFOPLIST_FILE = Canvas/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = net.masa69.Canvas;
+				PRODUCT_BUNDLE_IDENTIFIER = com.psychedelicnekopunch.Canvas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "a229ca69-0030-49b3-8a03-76b92f5c9f1f";
 				PROVISIONING_PROFILE_SPECIFIER = Canvas;
