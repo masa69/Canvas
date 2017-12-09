@@ -10,6 +10,16 @@ class AlignChangerButton: UIButton {
     }
     
     
+    var color: Canvas.Color? {
+        didSet {
+            guard let color: Canvas.Color = self.color else {
+                return
+            }
+            self.tintColor = UIColor.rgb(rgbValue: color.rawValue, alpha: 1)
+        }
+    }
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.afterInit()

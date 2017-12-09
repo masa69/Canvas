@@ -104,6 +104,7 @@ class MainViewController: UIViewController {
                 self.textBoardView.update(index: l.index, text: text, fontSize: fontSize, color: color, align: align, textDecoration: textDecoration)
             }
         }
+        vc.modalPresentationStyle = .overCurrentContext
         self.present(vc, animated: false, completion: nil)
     }
     

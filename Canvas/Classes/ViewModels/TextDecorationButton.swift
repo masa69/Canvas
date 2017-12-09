@@ -3,6 +3,12 @@ import UIKit
 
 class TextDecorationButton: UIButton {
     
+    var color: Canvas.Color? {
+        didSet {
+            self.update()
+        }
+    }
+    
     var style: Canvas.TextDecoration? {
         didSet {
             self.update()
@@ -35,15 +41,18 @@ class TextDecorationButton: UIButton {
         guard let style: Canvas.TextDecoration = self.style else {
             return
         }
+        guard let color: Canvas.Color = self.color else {
+            return
+        }
         switch style {
         case .none:
-            self.tintColor = UIColor.black
+            self.tintColor = UIColor.rgb(rgbValue: color.rawValue, alpha: 1)
             self.backgroundColor = UIColor.clear
-            self.layer.borderColor = UIColor.black.cgColor
+            self.layer.borderColor = UIColor.rgb(rgbValue: color.rawValue, alpha: 1).cgColor
         case .clearBorder:
             self.tintColor = UIColor.white
-            self.backgroundColor = UIColor.black
-            self.layer.borderColor = UIColor.black.cgColor
+            self.backgroundColor = UIColor.rgb(rgbValue: color.rawValue, alpha: 0.5)
+            self.layer.borderColor = UIColor.rgb(rgbValue: color.rawValue, alpha: 0.5).cgColor
         }
     }
     

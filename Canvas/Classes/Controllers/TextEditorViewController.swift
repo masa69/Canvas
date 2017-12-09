@@ -1,13 +1,13 @@
 
 import UIKit
 
-class TextEditorViewController: UIViewController {
+class TextEditorViewController: UIViewController, UICollectionViewDelegate {
     
     @IBOutlet weak var keyboardToasterView: KeyboardToasterView!
     
     @IBOutlet weak var keyboardToasterViewBottomConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var bodyTextView: UITextView!
+    @IBOutlet weak var bodyTextView: CanvasBodyTextView!
     
     @IBOutlet weak var doneButton: UIButton!
     
@@ -15,9 +15,7 @@ class TextEditorViewController: UIViewController {
     
     @IBOutlet weak var textDecorationButton: TextDecorationButton!
     
-    @IBOutlet weak var blackButton: BlackButton!
-    
-    @IBOutlet weak var redButton: RedButton!
+    @IBOutlet weak var colorCollectionView: CanvasColorCollectionView!
     
     @IBOutlet weak var alignChangerButton: AlignChangerButton!
     
@@ -27,42 +25,24 @@ class TextEditorViewController: UIViewController {
     var align: Canvas.Align = .center {
         didSet {
             alignChangerButton.align = self.align
-            
-            switch self.align {
-            case .left:
-                bodyTextView.textAlignment = .left
-            case .center:
-                bodyTextView.textAlignment = .center
-            case .right:
-                bodyTextView.textAlignment = .right
-            }
+            bodyTextView.align = self.align
         }
     }
     
     var color: Canvas.Color = .black {
         didSet {
-            switch self.textDecoration {
-            case .none:
-                bodyTextView.textColor = UIColor.rgb(rgbValue: self.color.rawValue, alpha: 1.0)
-                bodyTextView.backgroundColor = UIColor.clear
-            case .clearBorder:
-                bodyTextView.textColor = UIColor.white
-                bodyTextView.backgroundColor = UIColor.rgb(rgbValue: self.color.rawValue, alpha: 0.5)
-            }
+            textDecorationButton.color = self.color
+            alignChangerButton.color = self.color
+            bodyTextView.color = self.color
+            colorCollectionView.currentColor = self.color
+            fontSizeSlider.tintColor = UIColor.rgb(rgbValue: self.color.rawValue, alpha: 1)
         }
     }
     
     var textDecoration: Canvas.TextDecoration = .none {
         didSet {
             textDecorationButton.style = self.textDecoration
-            switch self.textDecoration {
-            case .none:
-                bodyTextView.textColor = UIColor.rgb(rgbValue: self.color.rawValue, alpha: 1.0)
-                bodyTextView.backgroundColor = UIColor.clear
-            case .clearBorder:
-                bodyTextView.textColor = UIColor.white
-                bodyTextView.backgroundColor = UIColor.rgb(rgbValue: self.color.rawValue, alpha: 0.5)
-            }
+            bodyTextView.textDecoration = self.textDecoration
         }
     }
     
@@ -78,9 +58,12 @@ class TextEditorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.rgb(rgbValue: 0x000000, alpha: 0.4)
         self.initTextView()
         self.initButton()
         self.initKeyboardView()
+        
+        colorCollectionView.delegate = self
     }
     
     
@@ -109,6 +92,12 @@ class TextEditorViewController: UIViewController {
     }
     
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        colorCollectionView.move()
+    }
+    
+    
     private func initTextView() {
         bodyTextView.text = ""
         fontSizeSlider.maximumValue = 70
@@ -119,8 +108,6 @@ class TextEditorViewController: UIViewController {
     
     private func initButton() {
         textDecorationButton.addTarget(self, action: #selector(self.onTextDeorationButton(_:)), for: .touchDown)
-        blackButton.addTarget(self, action: #selector(self.onBlackButton(_:)), for: .touchDown)
-        redButton.addTarget(self, action: #selector(self.onRedButton(_:)), for: .touchDown)
         alignChangerButton.addTarget(self, action: #selector(self.onAlignChangerButton(_:)), for: .touchDown)
         doneButton.addTarget(self, action: #selector(self.onDoneButton(_:)), for: .touchDown)
     }
@@ -146,7 +133,7 @@ class TextEditorViewController: UIViewController {
         guard let label: TextEditorLabel = self.label else {
             self.fontSize = 30
             self.align = .center
-            self.color = .black
+            self.color = .white
             self.textDecoration = .none
             return
         }
@@ -200,6 +187,16 @@ class TextEditorViewController: UIViewController {
                 self.didFinish?(self.bodyTextView.text, self.fontSize, self.color, self.align, self.textDecoration)
             }
         }
+    }
+    
+    
+    // MARK: -- UICollectionViewDelegate
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell: CanvasColorCollectionViewCell = collectionView.cellForItem(at: indexPath) as? CanvasColorCollectionViewCell else {
+            return
+        }
+        self.color = cell.color
     }
     
 }

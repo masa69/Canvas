@@ -2,6 +2,27 @@
 import UIKit
 
 extension UIView {
+    
+    @IBInspectable var borderRadius: CGFloat {
+        get {
+            return layer.cornerRadius
+        }
+        set {
+            layer.cornerRadius = newValue
+            layer.masksToBounds = newValue > 0
+        }
+    }
+    
+    @IBInspectable var borderWidth: CGFloat {
+        get {
+            return self.layer.borderWidth
+        }
+        set {
+            self.layer.borderWidth = newValue
+        }
+    }
+    
+    
     func toImage() -> UIImage? {
         // UIGraphicsBeginImageContextWithOptions(size: CGSize, opaque: Bool, scale: CGFloat)
         // 第2引数: true = 背景不透明, false = 背景透明
@@ -15,4 +36,5 @@ extension UIView {
         UIGraphicsEndImageContext()
         return image
     }
+    
 }

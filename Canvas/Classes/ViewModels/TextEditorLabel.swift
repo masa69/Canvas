@@ -5,7 +5,7 @@ class TextEditorLabel: UILabel {
     
     private var parentView: UIView?
     
-    private let insets: UIEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+    private let insets: UIEdgeInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
     
     private var paddingV: CGFloat {
         get {
@@ -83,6 +83,11 @@ class TextEditorLabel: UILabel {
         self.color = color
         self.align = align
         self.textDecoration = textDecoration
+        
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOffset = CGSize(width: 0, height: 0)
+        self.layer.shadowRadius = 10
+        self.layer.shadowOpacity = 0.2
         
         self.updateTextStyle()
         self.updateAlign()
