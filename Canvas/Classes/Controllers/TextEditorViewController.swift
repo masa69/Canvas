@@ -59,6 +59,13 @@ class TextEditorViewController: UIViewController, UICollectionViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.rgb(rgbValue: 0x000000, alpha: 0.4)
+        
+//        let effect = UIBlurEffect(style: UIBlurEffectStyle.dark);
+//        let effectView = UIVisualEffectView(effect: effect);
+//        effectView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+//        blurView.addSubview(effectView);
+//        blurView.layer.opacity = 0
+        
         self.initTextView()
         self.initButton()
         self.initKeyboardView()
